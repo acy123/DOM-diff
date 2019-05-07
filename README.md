@@ -5,3 +5,34 @@
  #### diff 算法题
   - 请用递归的方式遍历树形数据结构中的每一个节点
   - 将类似以下JSON表示的树状结构(可以无限层级)通过parseDOM函数(使用document.createElement,document.createTextNode,appendChild等方法)生成一颗DOM树(返回一个element元素)
+  eg：
+  ```const JsonTree = {
+            "tagName": "ul",
+            "props": {
+                "className": "list",
+                "data-name": "jsontree"
+            },
+            "children": [{
+                "tagName": "li",
+                "children": [{
+                    "tagName": "a",
+                    "props": {
+                        "href": "https://www.aliyun.com",
+                        "target": "_blank"
+                    },
+                    "children": "阿里云"
+                }]
+            }, {
+                "tagName": "li",
+                "children": [{
+                    "tagName": "img",
+                    "props": {
+                        "src": "./1.jpg",
+                        // "width": "16px"
+                    }
+                }]
+            }]
+
+
+        }
+  ```
