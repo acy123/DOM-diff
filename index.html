@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.请用递归的方式遍历树形数据结构中的每一个节点
+        const options = [{
+            value: 'zhejiang',
+            label: 'Zhejiang',
+            children: [{
+                value: 'hangzhou',
+                label: 'Hangzhou',
+                children: [{
+                    value: 'xihu',
+                    label: 'West Lake'
+                }]
+            }]
+        }, {
+            value: 'jiangsu',
+            label: 'Jiangsu',
+            children: [{
+                value: 'nanjing',
+                label: 'Nanjing',
+                children: [{
+                    value: 'zhonghuamen',
+                    label: 'Zhong Hua Men'
+                }]
+            }]
+        }];
+
+        function recursion(_primary, _options) {
+            var _parent = null;
+            for (var i = 0; i < _options.length; i++) {
+                if (_options[i].id !== _primary) {
+                    if (!_options[i].children) {
+                        return null;
+                    }
+                    _parent = recursion(_primary, _options[i].children);
+                    if (_parent) {
+                        _parent.push(_options[i])
+                        return _p
+                    }
+                }
+            }
+        }
+        //2.将类似以下JSON表示的树状结构(可以无限层级)通过parseDOM函数(使用document.createElement,document.createTextNode,appendChild等方法)生成一颗DOM树(返回一个element元素)
+        const JsonTree = {
+            "tagName": "ul",
+            "props": {
+                "className": "list",
+                "data-name": "jsontree"
+            },
+            "children": [{
+                "tagName": "li",
+                "children": [{
+                    "tagName": "a",
+                    "props": {
+                        "href": "https://www.aliyun.com",
+                        "target": "_blank"
+                    },
+                    "children": "阿里云"
+                }]
+            }, {
+                "tagName": "li",
+                "children": [{
+                    "tagName": "img",
+                    "props": {
+                        "src": "./1.jpg",
+                        // "width": "16px"
+                    }
+                }]
+            }]
+
+
+        }
+
+        function parseDOM(JsonTree) {
+            const {
+                tagName,
+                props,
+                children
+            } = JsonTree;
+            const element = document.createElement(tagName);
+            for (let key in props) {
+                element[key] = props[key]
+            };
+            if (children && typeof(children) === 'object') {
+                for (let i = 0; i < children.length; i++) {
+                    element.appendChild(parseDOM(children[i]))
+                }
+            } else {
+                if (children) {
+                    element.appendChild(document.createTextNode(children));
+
+                }
+            }
+            return element
+        }
+        parseDOM(JsonTree)
+        document.getElementsByTagName('body')[0].appendChild(parseDOM(JsonTree))
+    </script>
+</body>
+
+</html>
