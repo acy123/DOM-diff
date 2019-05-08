@@ -132,9 +132,9 @@ var MyComponent = React.createClass({
 从二到无：
 
 移除节点：```<div className="second"><p>A Paragraph</p></div>```
-层级对比
+#### 层级对比
 计算一棵树形结构转换成另一棵树形结构的最少操作是一个O(n^3)问题。可以想象，传统解法对我们的实际用例并不友好。React使用了一种简单却强大的技巧，使算法的复杂度接近O(n)。
-
+![](https://calendar.perfplanet.com/wp-content/uploads/2013/12/vjeux/1.png)
 React只会比较两棵树之间的同级节点。这样就彻底的降低了复杂度，并且不会带来什么损失。因为在web应用中不太可能把一个组件在DOM树中跨层级地去移动。它们通常只会在子节点中平级的移动组件，如下图： 
 level by level
 
