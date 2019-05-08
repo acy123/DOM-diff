@@ -9,7 +9,8 @@
   
   - 在日常的开发过程中经常会遇到这种类型的数据。主要考我们对递归算法的熟练程度。具体的知识点就是题中列出的3个DOM操作的知识。
   - eg：
-  ```const JsonTree = {
+  ```
+  const JsonTree = {
             "tagName": "ul",
             "props": {
                 "className": "list",
